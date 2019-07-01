@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -49,8 +50,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -63,10 +66,39 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $user = User::create([
+            'firstname' => $data['firstname'],
+            'lastname' => $data['lastname'],
+            'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        //Save user meta
+
+        return $user;
+    }
+
+    public function register(Request $request)
+    {
+        $v = $this->validator($request->all());
+        
+        if($v->fails()) {
+            return response()->json([
+                'data' => [
+                    'message' => "Validation Failed",
+                    'errors' => $v->errors()
+                ]
+            ]);
+        }
+
+        $user = $this->create($request->all());
+
+        return response()->json([
+            'data' => [
+                'message' => "Registration Success",
+                'user' => $user
+            ]
+        ]); 
     }
 }

@@ -17,11 +17,11 @@ class CreateChildTable extends Migration
             $table->bigIncrements('id');
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('othernames');
+            $table->string('othernames')->nullable();
             $table->string('address');
-            $table->string('guardian_name');
-            $table->string('guardian_email');
-            $table->string('guardian_phone');
+            $table->string('guardian_name')->nullable();
+            $table->string('guardian_email')->nullable();
+            $table->string('guardian_phone')->nullable();
             $table->timestamps();
         });
     }

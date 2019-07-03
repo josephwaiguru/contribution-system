@@ -17,5 +17,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', 'Auth\LoginController@login');
+Route::post('login', 'Auth\LoginController@doLogin');
 Route::post('register', 'Auth\RegisterController@register');
+
+//Admin routes
+Route::middleware('api')->get('child-list', 'AdminController@getChildList');
+Route::post('add-child', 'AdminController@addChild');

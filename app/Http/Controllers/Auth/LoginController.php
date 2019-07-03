@@ -42,7 +42,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request) {
+    public function doLogin(Request $request) {
         $credentials = $request->only('email', 'password');
 
         try {

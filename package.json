@@ -34,5 +34,8 @@
         "tslib": "^1.9.0",
         "typescript": "~3.2.2",
         "zone.js": "^0.8.26"
+    },
+    "dependencies": {
+        "@ng-bootstrap/ng-bootstrap": "^5.0.0-rc.1"
     }
 }

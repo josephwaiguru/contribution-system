@@ -22,4 +22,6 @@ Route::post('register', 'Auth\RegisterController@register');
 
 //Admin routes
 Route::middleware('api')->get('child-list', 'AdminController@getChildList');
+Route::middleware('api')->get('assign-sponsor', 'AdminController@assignSponsor');
+Route::middleware('api')->get('users', 'AdminController@usersList');
 Route::post('add-child', 'AdminController@addChild');

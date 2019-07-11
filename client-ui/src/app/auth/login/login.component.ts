@@ -22,7 +22,7 @@ export class LoginComponent {
                 this.authService.user = res.data.user;
                 this.authService.token = res.data.token;
                 
-                this.router.navigate(['/dashboard']);
+                this.router.navigate(['/admin/dashboard']);
             }, (err) => {
                 console.log(err)
             });

@@ -17,6 +17,7 @@ class CreateUserMetaTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('value');
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
         });
     }

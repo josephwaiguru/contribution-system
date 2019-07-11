@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { AuthService } from '../shared/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent {
         confirmation_password: '',
     }
 
-    constructor(private authService: AuthService, private router: Router) {}
+    constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
     onSignup(form: any) {
         if(form.valid) {
@@ -27,9 +28,11 @@ export class RegisterComponent {
                 // this.authService.token = res.data.token;
                 console.log(res)
                 //go to login
-               // this.router.navigate(['/login']);
+               this.router.navigate(['/login']);
+
+               this.toastr.success('Registration successful!');
             }, (err) => {
-                console.log(err)
+                this.toastr.error('Validation failed');
             });
         }
     }

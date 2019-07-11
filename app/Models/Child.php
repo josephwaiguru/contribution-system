@@ -9,6 +9,10 @@ class Child extends Model
     protected $table = 'child';
 
     protected $fillable = [
-        'firstname', 'lastname', 'othernames', 'address', 'guardian_name', 'guardian_email', 'guardian_phone'
+        'firstname', 'lastname', 'othernames', 'address', 'guardian_name', 'guardian_email', 'guardian_phone', 'dob'
     ];
+
+    public function sponsor() {
+        return $this->belongsTo(User::class, 'sponsor_child');
+    }
 }

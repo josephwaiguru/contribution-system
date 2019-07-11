@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\UserMeta;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -76,6 +78,8 @@ class RegisterController extends Controller
         ]);
 
         //Save user meta
+        $meta = UserMeta::create(['name' => 'address', 'value' => $data['address'], 'user_id' => $user->id]);
+        $meta = UserMeta::create(['name' => 'postal_code', 'value' => $data['postal_code'], 'user_id' => $user->id]);
 
         return $user;
     }

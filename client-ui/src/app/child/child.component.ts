@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChildService } from '../admin/shared/child.service';
 import { Child } from './child.model';
 import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from '../admin/shared/user.service';
 
 @Component({
   selector: 'app-child',
@@ -17,16 +18,22 @@ export class ChildComponent implements OnInit {
     guardian_name: new FormControl(),
     guardian_email: new FormControl(),
     guardian_phone: new FormControl(),
+    dob: new FormControl(),
   });
 
   childList: Array<Child> = [];
 
   child: Child = new Child();
 
-  constructor(private childService: ChildService) { }
+  sponsors: Array<any> = [];
+
+  sponsor_id: number;
+
+  constructor(private childService: ChildService, private userService: UserService) { }
 
   ngOnInit() {
     this.getChildList();
+    this.getUsers();
   }
 
   getChildList() {
@@ -35,8 +42,18 @@ export class ChildComponent implements OnInit {
     });
   }
 
+  getUsers() {
+    this.userService.userList().subscribe((res: any) =>this.sponsors=res.data);
+  }
+
+  onAssignSponsor() {
+    this.childService.assignSponsor(this.sponsor_id).subscribe(res=> {
+
+    })
+  }
+
   onSave(modal: any) {
-    console.log('Form valid ?', this.childForm.valid);
+    
     if(this.childForm.valid) {
       this.childService.addChild(this.childForm.value).subscribe((res: any) => {
         //refresh child data

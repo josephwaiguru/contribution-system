@@ -19,6 +19,7 @@ class CreateChildTable extends Migration
             $table->string('lastname');
             $table->string('othernames')->nullable();
             $table->string('address');
+            $table->datetime('dob')->nullable();
             $table->string('guardian_name')->nullable();
             $table->string('guardian_email')->nullable();
             $table->string('guardian_phone')->nullable();

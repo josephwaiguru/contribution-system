@@ -18,4 +18,8 @@ export class ChildService {
   public addChild(post: Child) {
     return this.http.post(`${environment.api}/add-child`, post);
   }
+
+  public assignSponsor(sponsor_id: number) {
+    return this.http.post(`${environment.api}/assign-sponsor`, { sponsor_id });
+  }
 }

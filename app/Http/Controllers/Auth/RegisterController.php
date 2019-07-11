@@ -90,7 +90,7 @@ class RegisterController extends Controller
                     'message' => "Validation Failed",
                     'errors' => $v->errors()
                 ]
-            ]);
+                ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         $user = $this->create($request->all());

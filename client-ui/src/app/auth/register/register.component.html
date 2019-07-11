@@ -1,0 +1,64 @@
+<div class="wrapper fadeInDow">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form #f="ngForm" (submit)="onSignup(f)">
+          <div class="row">
+              <div class="form-group col-sm-6">
+                <label for="fname">First Name</label>
+                <input type="text" class="form-control" name="firstname" [(ngModel)]="auth.firstname">
+              </div>
+              <div class="form-group col-sm-6">
+                    <label for="fname">Last Name</label>
+                    <input type="text" class="form-control" name="lastname" [(ngModel)]="auth.lastname">
+                  </div>
+          </div>
+
+          <div class="row">
+                <div class="form-group col-sm-6">
+                  <label for="phone">Phone</label><br>
+                  <input type="text" class="form-control" name="phone" [(ngModel)]="auth.phone">
+                </div>
+                <div class="form-group col-sm-6">
+                      <label for="fname">Email</label><br>
+                      <input type="text" class="form-control" name="lastname" [(ngModel)]="auth.email">
+                    </div>
+            </div>
+
+            <div class="row">
+                    <div class="form-group col-sm-6">
+                      <label for="phone">Address</label><br>
+                      <input type="text" class="form-control" name="address" [(ngModel)]="auth.address">
+                    </div>
+                    <div class="form-group col-sm-6">
+                          <label for="fname">Postal Code</label><br>
+                          <input type="text" class="form-control" name="postal_code" [(ngModel)]="auth.postal_code">
+                        </div>
+                </div>
+
+            <div class="row">
+                    <div class="form-group col-sm-6">
+                      <label for="password">Password</label><br>
+                      <input type="password" class="form-control" name="password" [(ngModel)]="auth.password">
+                    </div>
+                    <div class="form-group col-sm-6">
+                          <label for="fname">Confirm Passowrd</label><br>
+                          <input type="text" class="form-control" name="password_confirmation" [(ngModel)]="auth.password_confirmation">
+                        </div>
+                </div>
+       <input type="submit" class="fadeIn fourth" value="Register">
+      </form>
+
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" routerLink="/login">Go to login</a>
+      </div>
+  
+    </div>
+  </div>

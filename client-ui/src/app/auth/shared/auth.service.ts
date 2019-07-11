@@ -29,8 +29,8 @@ export class AuthService {
 
 	public isLoggedIn() {
 		var token: any = sessionStorage.getItem(this.tokenName);
-
-		if(token !== undefined && token !== 'null') {
+console.log(token)
+		if(token !== undefined && token !== null) {
 			return true;
 		}
 
